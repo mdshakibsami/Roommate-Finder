@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/auth";
 import {
@@ -16,6 +16,50 @@ import logo from "../assets/roommateLogo.png";
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    totalListings: 0,
+    activeListings: 0,
+    myListings: 0,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        // Fetch total listings from all users
+        const totalResponse = await fetch(
+          "http://localhost:3000/browse_listing"
+        );
+        const totalData = await totalResponse.json();
+
+        // Fetch user's listings
+        let myListingsData = [];
+        if (user?.email) {
+          const myResponse = await fetch(
+            `http://localhost:3000/browse_listing/${user.email}`
+          );
+          myListingsData = await myResponse.json();
+        }
+
+        // Calculate active listings (assuming availability: true means active)
+        const activeListings = totalData.filter(
+          (listing) => listing.availability
+        ).length;
+
+        setStats({
+          totalListings: totalData.length,
+          activeListings: activeListings,
+          myListings: myListingsData.length,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, [user?.email]);
 
   const handleLogout = () => {
     logOut()
@@ -73,15 +117,6 @@ const Dashboard = () => {
             </li>
             <li>
               <Link
-                to={`/dashboard/my-items/${user?.email}`}
-                className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
-              >
-                <FaList className="text-lg" />
-                <span className="font-medium">My Items</span>
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="/dashboard/add"
                 className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
               >
@@ -89,6 +124,16 @@ const Dashboard = () => {
                 <span className="font-medium">Add Item</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to={`/dashboard/my-items/${user?.email}`}
+                className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
+              >
+                <FaList className="text-lg" />
+                <span className="font-medium">My Items</span>
+              </Link>
+            </li>
+
             <li>
               <Link
                 to="/dashboard/browse"
@@ -179,14 +224,16 @@ const Dashboard = () => {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">
                         Total Listings
                       </p>
-                      <p className="text-2xl font-bold text-gray-900">0</p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {loading ? "..." : stats.totalListings}
+                      </p>
                     </div>
                     <div className="p-3 rounded-full bg-blue-500">
                       <FaHome className="text-white text-xl" />
@@ -199,7 +246,9 @@ const Dashboard = () => {
                       <p className="text-sm font-medium text-gray-600">
                         Active Listings
                       </p>
-                      <p className="text-2xl font-bold text-gray-900">0</p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {loading ? "..." : stats.activeListings}
+                      </p>
                     </div>
                     <div className="p-3 rounded-full bg-green-500">
                       <FaList className="text-white text-xl" />
@@ -209,24 +258,15 @@ const Dashboard = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Views</p>
-                      <p className="text-2xl font-bold text-gray-900">0</p>
+                      <p className="text-sm font-medium text-gray-600">
+                        My Listings
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {loading ? "..." : stats.myListings}
+                      </p>
                     </div>
                     <div className="p-3 rounded-full bg-purple-500">
-                      <FaSearch className="text-white text-xl" />
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">
-                        Messages
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900">0</p>
-                    </div>
-                    <div className="p-3 rounded-full bg-orange-500">
-                      <FaUser className="text-white text-xl" />
+                      <FaList className="text-white text-xl" />
                     </div>
                   </div>
                 </div>
@@ -294,9 +334,7 @@ const Dashboard = () => {
                   </Link>
                 </div>
               </div> */}
-              <Outlet>
-
-              </Outlet>
+              <Outlet></Outlet>
             </div>
           </div>
         </div>

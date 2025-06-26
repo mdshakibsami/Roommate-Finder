@@ -53,148 +53,167 @@ const DashboardMyListing = () => {
 
   if (myListings.length === 0) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold mb-4">No Listings Found</h2>
-        <p className="text-gray-600 mb-4">
-          You haven't added any listings yet.
-        </p>
-        <Link
-          to="/add"
-          className="bg-[#3289c9] text-white px-6 py-2 rounded-lg hover:bg-[#2778b5] transition-colors"
-        >
-          Add Your First Listing
-        </Link>
+      <div className="w-full px-2 py-4">
+        <div className="text-center py-12 bg-white rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-3">No Listings Found</h2>
+          <p className="text-gray-600 mb-4">
+            You haven't added any listings yet.
+          </p>
+          <Link
+            to="/add"
+            className="bg-[#3289c9] text-white px-4 py-2 rounded-lg hover:bg-[#2778b5] transition-colors inline-flex items-center gap-2"
+          >
+            <FaEdit className="text-sm" />
+            Add Your First Listing
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto max-w-11/12 px-4 py-8">
-      <div className="text-center mb-8 flex justify-center gap-10">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">My Listings</h2>
+    <div className="w-full px-2 py-4">
+      <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <h2 className="text-2xl font-bold text-gray-800">My Listings</h2>
         <Link
           to="/add"
-          className="bg-[#3289c9] text-white px-6 py-3 rounded-lg hover:bg-[#2778b5] transition-colors duration-200 inline-flex items-center gap-2"
+          className="bg-[#3289c9] text-white px-4 py-2 rounded-lg hover:bg-[#2778b5] transition-colors duration-200 inline-flex items-center gap-2 text-sm"
         >
           <FaEdit className="text-sm" />
           Add New Listing
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {myListings.map((listing) => (
-          <div
-            key={listing._id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-gray-200"
-          >
-            {/* Card Header with Image */}
-            <div className="relative h-48 bg-gradient-to-br from-[#3289c9] to-[#2778b5]">
-              {listing.imageURL ? (
-                <img
-                  src={listing.imageURL}
-                  alt={listing.title}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg
-                        className="w-8 h-8"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                      </svg>
+      {/* Compact Table Format */}
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Image
+                </th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Title
+                </th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Location
+                </th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Rent
+                </th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Type
+                </th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
+                  Status
+                </th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {myListings.map((listing) => (
+                <tr key={listing._id} className="hover:bg-gray-50">
+                  {/* Compact Image */}
+                  <td className="px-3 py-2">
+                    <div className="w-10 h-10 rounded-md overflow-hidden bg-gradient-to-br from-[#3289c9] to-[#2778b5]">
+                      {listing.imageURL ? (
+                        <img
+                          src={listing.imageURL}
+                          alt={listing.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
-                    <p className="text-sm font-medium">No Image</p>
-                  </div>
-                </div>
-              )}
+                  </td>
 
-              {/* Status Badge */}
-              <div className="absolute top-3 right-3">
-                <span
-                  className={`px-3 py-1 text-xs font-semibold rounded-full shadow-md ${
-                    listing.availability
-                      ? "bg-green-500 text-white"
-                      : "bg-red-500 text-white"
-                  }`}
-                >
-                  {listing.availability ? "Available" : "Not Available"}
-                </span>
-              </div>
-            </div>
+                  {/* Compact Title */}
+                  <td className="px-3 py-2">
+                    <div className="font-medium text-gray-900 max-w-[150px] truncate" title={listing.title}>
+                      {listing.title}
+                    </div>
+                  </td>
 
-            {/* Card Content */}
-            <div className="p-6">
-              {/* Title */}
-              <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 min-h-[3.5rem]">
-                {listing.title}
-              </h3>
+                  {/* Compact Location */}
+                  <td className="px-3 py-2">
+                    <div className="text-gray-600 max-w-[120px] truncate" title={listing.location}>
+                      {listing.location}
+                    </div>
+                  </td>
 
-              {/* Location */}
-              <div className="flex items-center gap-2 text-gray-600 mb-3">
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-sm">{listing.location}</span>
-              </div>
+                  {/* Compact Rent */}
+                  <td className="px-3 py-2">
+                    <div className="font-semibold text-[#3289c9]">
+                      ${listing.rentAmount}
+                      <div className="text-gray-400 text-xs">/month</div>
+                    </div>
+                  </td>
 
-              {/* Rent Amount */}
-              <div className="mb-4">
-                <span className="text-2xl font-bold text-[#3289c9]">
-                  ${listing.rentAmount}
-                </span>
-                <span className="text-gray-500 text-sm">/month</span>
-              </div>
+                  {/* Compact Room Type */}
+                  <td className="px-3 py-2">
+                    {listing.roomType && (
+                      <span className="inline-block px-2 py-1 rounded text-xs bg-gray-100 text-gray-700 max-w-[80px] truncate">
+                        {listing.roomType}
+                      </span>
+                    )}
+                  </td>
 
-              {/* Room Type */}
-              {listing.roomType && (
-                <div className="mb-4">
-                  <span className="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {listing.roomType}
-                  </span>
-                </div>
-              )}
+                  {/* Compact Status */}
+                  <td className="px-3 py-2">
+                    <span
+                      className={`inline-block px-2 py-1 rounded text-xs font-medium ${
+                        listing.availability
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
+                      }`}
+                    >
+                      {listing.availability ? "Available" : "Unavailable"}
+                    </span>
+                  </td>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-2 pt-4 border-t border-gray-100">
-                <Link
-                  to={`/roommates-details/${listing._id}`}
-                  className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium"
-                >
-                  <FaEye className="w-4 h-4" />
-                  View Details
-                </Link>
-                <div className="flex gap-2">
-                  <Link
-                    to={`/update-listing/${listing._id}`}
-                    className="flex-1 bg-[#3289c9] text-white py-2 px-4 rounded-lg hover:bg-[#2778b5] transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium"
-                  >
-                    <FaEdit className="w-4 h-4" />
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(listing._id)}
-                    className="flex-1 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium"
-                  >
-                    <FaTrash className="w-4 h-4" />
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+                  {/* Compact Actions */}
+                  <td className="px-3 py-2">
+                    <div className="flex items-center justify-center gap-1">
+                      <Link
+                        to={`/roommates-details/${listing._id}`}
+                        className="text-gray-600 hover:text-gray-900 p-1 rounded hover:bg-gray-100 transition-colors"
+                        title="View Details"
+                      >
+                        <FaEye className="w-3 h-3" />
+                      </Link>
+                      <Link
+                        to={`/update-listing/${listing._id}`}
+                        className="text-[#3289c9] hover:text-[#2778b5] p-1 rounded hover:bg-blue-50 transition-colors"
+                        title="Edit"
+                      >
+                        <FaEdit className="w-3 h-3" />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(listing._id)}
+                        className="text-red-600 hover:text-red-800 p-1 rounded hover:bg-red-50 transition-colors"
+                        title="Delete"
+                      >
+                        <FaTrash className="w-3 h-3" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
