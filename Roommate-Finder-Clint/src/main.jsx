@@ -15,6 +15,7 @@ import ListingDetails from "./pages/ListingDetails";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import UpdatePage from "./pages/Updatepage";
 import About from "./components/About";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () =>
-          fetch(
-            "http://localhost:3000/available-roommates"
-          ),
+        loader: () => fetch("http://localhost:3000/available-roommates"),
       },
       {
         path: "about",
@@ -54,9 +52,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/browse_listing/${params.email}`
-          ),
+          fetch(`http://localhost:3000/browse_listing/${params.email}`),
       },
       {
         path: "roommates-details/:id",
@@ -66,9 +62,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/details/${params.id}`
-          ),
+          fetch(`http://localhost:3000/details/${params.id}`),
       },
       {
         path: "/update-listing/:id",
@@ -78,9 +72,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/details/${params.id}`
-          ),
+          fetch(`http://localhost:3000/details/${params.id}`),
       },
       {
         path: "login",
@@ -91,6 +83,14 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateProvider>
+        <Dashboard />
+      </PrivateProvider>
+    ),
   },
 ]);
 

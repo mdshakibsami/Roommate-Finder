@@ -48,6 +48,13 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      {user && (
+        <li>
+          <NavLink className="font-bold hover:text-[#3289c9]" to={"/dashboard"}>
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink className="font-bold hover:text-[#3289c9]" to="/about">
           About Us
