@@ -16,6 +16,8 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import UpdatePage from "./pages/Updatepage";
 import About from "./components/About";
 import Dashboard from "./pages/Dashboard";
+import DashboardBrowseListing from "./pages/DashboardBrowseListing";
+import DashboardMyListing from "./pages/DashboardMyListing";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +93,34 @@ const router = createBrowserRouter([
         <Dashboard />
       </PrivateProvider>
     ),
+    children: [
+      {
+        index: true,
+        element: <div>Dashboard Home Content</div>,
+      },
+      {
+        path: "add",
+        element: (
+          <PrivateProvider>
+            <AddRoommate></AddRoommate>
+          </PrivateProvider>
+        ),
+      },
+      {
+        path: "my-items/:email",
+        element: (
+          <PrivateProvider>
+            <DashboardMyListing></DashboardMyListing>
+          </PrivateProvider>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/browse_listing/${params.email}`),
+      },
+      {
+        path: "browse",
+        element: <DashboardBrowseListing></DashboardBrowseListing>,
+      },
+    ],
   },
 ]);
 

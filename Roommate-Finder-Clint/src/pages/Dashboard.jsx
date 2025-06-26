@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/auth";
-import { 
-  FaHome, 
-  FaList, 
-  FaPlus, 
-  FaSearch, 
-  FaUser, 
+import {
+  FaHome,
+  FaList,
+  FaPlus,
+  FaSearch,
+  FaUser,
   FaSignOutAlt,
   FaTachometerAlt,
-  FaInfoCircle
+  FaInfoCircle,
 } from "react-icons/fa";
 import logo from "../assets/roommateLogo.png";
 
@@ -35,7 +35,9 @@ const Dashboard = () => {
         <div className="p-6 border-b border-gray-200">
           <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="Logo" className="w-10 h-10" />
-            <span className="text-xl font-bold text-[#3289c9]">RoommateFinder</span>
+            <span className="text-xl font-bold text-[#3289c9]">
+              RoommateFinder
+            </span>
           </Link>
         </div>
 
@@ -46,7 +48,9 @@ const Dashboard = () => {
               <FaUser className="text-white text-lg" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-800">{user?.displayName || "User"}</h3>
+              <h3 className="font-semibold text-gray-800">
+                {user?.displayName || "User"}
+              </h3>
               <p className="text-sm text-gray-600">{user?.email}</p>
             </div>
           </div>
@@ -54,7 +58,9 @@ const Dashboard = () => {
 
         {/* Navigation Links */}
         <nav className="p-4 flex-1">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Navigation</h3>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+            Navigation
+          </h3>
           <ul className="space-y-2">
             <li>
               <Link
@@ -67,7 +73,7 @@ const Dashboard = () => {
             </li>
             <li>
               <Link
-                to={`/my-listings/${user?.email}`}
+                to={`/dashboard/my-items/${user?.email}`}
                 className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
               >
                 <FaList className="text-lg" />
@@ -76,7 +82,7 @@ const Dashboard = () => {
             </li>
             <li>
               <Link
-                to="/add"
+                to="/dashboard/add"
                 className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
               >
                 <FaPlus className="text-lg" />
@@ -85,7 +91,7 @@ const Dashboard = () => {
             </li>
             <li>
               <Link
-                to="/browse"
+                to="/dashboard/browse"
                 className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
               >
                 <FaSearch className="text-lg" />
@@ -141,33 +147,17 @@ const Dashboard = () => {
                   <FaTachometerAlt className="text-sm" />
                   <span className="font-medium">Dashboard</span>
                 </NavLink>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                      isActive
-                        ? "bg-[#3289c9] text-white"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-[#3289c9]"
-                    }`
-                  }
-                >
-                  <FaInfoCircle className="text-sm" />
-                  <span className="font-medium">About Us</span>
-                </NavLink>
               </nav>
 
               {/* User Actions */}
               <div className="flex items-center gap-4">
                 <div className="text-sm text-gray-600">
-                  Welcome back, <span className="font-semibold text-gray-800">{user?.displayName}</span>!
+                  Welcome back,{" "}
+                  <span className="font-semibold text-gray-800">
+                    {user?.displayName}
+                  </span>
+                  !
                 </div>
-                <Link
-                  to="/add"
-                  className="bg-[#3289c9] text-white px-4 py-2 rounded-lg hover:bg-[#2778b5] transition-colors duration-200 flex items-center gap-2"
-                >
-                  <FaPlus className="text-sm" />
-                  <span>Quick Add</span>
-                </Link>
               </div>
             </div>
           </div>
@@ -183,7 +173,8 @@ const Dashboard = () => {
                   Welcome to your Dashboard! 👋
                 </h1>
                 <p className="text-blue-100">
-                  Manage your roommate listings and discover new opportunities from here.
+                  Manage your roommate listings and discover new opportunities
+                  from here.
                 </p>
               </div>
 
@@ -192,7 +183,9 @@ const Dashboard = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Total Listings</p>
+                      <p className="text-sm font-medium text-gray-600">
+                        Total Listings
+                      </p>
                       <p className="text-2xl font-bold text-gray-900">0</p>
                     </div>
                     <div className="p-3 rounded-full bg-blue-500">
@@ -203,7 +196,9 @@ const Dashboard = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Active Listings</p>
+                      <p className="text-sm font-medium text-gray-600">
+                        Active Listings
+                      </p>
                       <p className="text-2xl font-bold text-gray-900">0</p>
                     </div>
                     <div className="p-3 rounded-full bg-green-500">
@@ -225,7 +220,9 @@ const Dashboard = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Messages</p>
+                      <p className="text-sm font-medium text-gray-600">
+                        Messages
+                      </p>
                       <p className="text-2xl font-bold text-gray-900">0</p>
                     </div>
                     <div className="p-3 rounded-full bg-orange-500">
@@ -235,9 +232,11 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Quick Actions */}
+              {/* Quick Actions
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Quick Actions</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  Quick Actions
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <Link
                     to="/add"
@@ -248,8 +247,12 @@ const Dashboard = () => {
                         <FaPlus className="text-xl" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-800">Add New Listing</h3>
-                        <p className="text-sm text-gray-600">Create a new roommate listing</p>
+                        <h3 className="font-semibold text-gray-800">
+                          Add New Listing
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Create a new roommate listing
+                        </p>
                       </div>
                     </div>
                   </Link>
@@ -262,8 +265,12 @@ const Dashboard = () => {
                         <FaList className="text-xl" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-800">View My Listings</h3>
-                        <p className="text-sm text-gray-600">Manage your existing listings</p>
+                        <h3 className="font-semibold text-gray-800">
+                          View My Listings
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Manage your existing listings
+                        </p>
                       </div>
                     </div>
                   </Link>
@@ -276,13 +283,20 @@ const Dashboard = () => {
                         <FaSearch className="text-xl" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-800">Browse All</h3>
-                        <p className="text-sm text-gray-600">Explore available listings</p>
+                        <h3 className="font-semibold text-gray-800">
+                          Browse All
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          Explore available listings
+                        </p>
                       </div>
                     </div>
                   </Link>
                 </div>
-              </div>
+              </div> */}
+              <Outlet>
+
+              </Outlet>
             </div>
           </div>
         </div>
