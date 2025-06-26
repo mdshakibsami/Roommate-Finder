@@ -49,7 +49,9 @@ const SafetyTips = () => {
           {/* Lifestyle */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+              theme === "dark"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
             } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
@@ -74,7 +76,9 @@ const SafetyTips = () => {
           {/* Financial */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+              theme === "dark"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
             } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
@@ -99,7 +103,9 @@ const SafetyTips = () => {
           {/* Personal */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+              theme === "dark"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
             } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
@@ -140,7 +146,9 @@ const SafetyTips = () => {
           {/* Do's */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+              theme === "dark"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
             } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <div className="flex items-center gap-2 mb-4">
@@ -183,7 +191,9 @@ const SafetyTips = () => {
           {/* Don'ts */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+              theme === "dark"
+                ? "bg-gray-800 border border-gray-700"
+                : "bg-white border border-gray-200"
             } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <div className="flex items-center gap-2 mb-4">
@@ -224,54 +234,6 @@ const SafetyTips = () => {
                 </span>
               </li>
             </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Safety Checklist */}
-      <div>
-        <div className="flex items-center gap-3 mb-6">
-          <FaShieldAlt className="text-3xl text-[#3289c9]" />
-          <h2 className="text-2xl font-semibold">
-            Offline Meeting Safety Checklist
-          </h2>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold mb-4">Before Meeting</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Verify their identity through social media</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Share meeting details with a trusted friend</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Choose a public meeting place</span>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold mb-4">During Meeting</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Keep emergency contacts readily available</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Trust your instincts</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <FaHandshake className="text-[#3289c9]" />
-                  <span>Maintain awareness of surroundings</span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

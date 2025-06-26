@@ -7,13 +7,15 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import { useTheme } from "../hooks/use-theme";
 import logo from "../assets/roommateLogo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
 
   return (
-    <footer className="bg-gradient-to-b from-white via-gray-50 to-gray-100 w-full border-t border-gray-200 mt-8">
+    <footer className={`w-full border-t mt-8 transition-colors duration-300 ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-gradient-to-b from-white via-gray-50 to-gray-100 border-gray-200'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 py-10 justify-between items-start">
           {/* Brand and Contact Info */}
@@ -28,7 +30,7 @@ const Footer = () => {
                 RoommateFinder
               </span>
             </Link>
-            <div className="space-y-2 text-gray-600 text-sm">
+            <div className={`space-y-2 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
               <p className="flex items-center gap-2">
                 <FaPhone className="text-[#3289c9]" />
                 <span>+880 1234-567890</span>
@@ -47,7 +49,7 @@ const Footer = () => {
           <div className="justify-center flex">
             <div>
               <h3 className="text-lg font-bold mb-2 text-[#3289c9]">Quick Links</h3>
-              <ul className="space-y-2 text-gray-700 text-sm">
+              <ul className={`space-y-2 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                 <li>
                   <Link
                     to="/"
@@ -94,7 +96,7 @@ const Footer = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-base-100 flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border border-gray-200"
+                  className={`w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-gray-200 text-gray-700'}`}
                 >
                   <FaFacebook size={20} />
                 </a>
@@ -102,7 +104,7 @@ const Footer = () => {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-base-100 flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border border-gray-200"
+                  className={`w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-gray-200 text-gray-700'}`}
                 >
                   <FaLinkedin size={20} />
                 </a>
@@ -110,7 +112,7 @@ const Footer = () => {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-base-100 flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border border-gray-200"
+                  className={`w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#3289c9] hover:text-white transition-colors border ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-gray-200 text-gray-700'}`}
                 >
                   <FaGithub size={20} />
                 </a>
@@ -119,8 +121,8 @@ const Footer = () => {
           </div>
         </div>
         {/* Copyright */}
-        <div className="py-4 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-600">
+        <div className={`py-4 border-t text-center ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+          <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
             Copyright © {currentYear} RoommateFinder. All rights reserved.
           </p>
         </div>

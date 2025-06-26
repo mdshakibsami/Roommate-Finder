@@ -3,15 +3,23 @@ import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../pages/Footer';
 import ThemeProvider from '../contexts/theme-provider';
+import { useTheme } from '../hooks/use-theme';
+
+const RootLayoutContent = () => {
+    const { theme } = useTheme();
+    return (
+        <div className={`min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+            <Navbar></Navbar>
+            <Outlet></Outlet>
+            <Footer></Footer>
+        </div>
+    );
+};
 
 const RootLayout = () => {
     return (
         <ThemeProvider>
-            <div>
-                <Navbar></Navbar>
-                <Outlet></Outlet>
-                <Footer></Footer>
-            </div>
+            <RootLayoutContent />
         </ThemeProvider>
     );
 };

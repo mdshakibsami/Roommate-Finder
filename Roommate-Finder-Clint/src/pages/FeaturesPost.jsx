@@ -8,12 +8,16 @@ import cardImage from "../assets/house.svg";
 
 const FeaturesPost = () => {
   const [features, setFeatures] = useState([]);
+
   const { theme } = useTheme();
 
   useEffect(() => {
     fetch("http://localhost:3000/available-roommates")
       .then((res) => res.json())
-      .then((data) => setFeatures(data));
+      .then((data) => {
+        console.log(data);
+        return setFeatures(data);
+      });
   }, []);
 
   return (
