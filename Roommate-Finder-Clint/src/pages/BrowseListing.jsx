@@ -8,9 +8,11 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import { useTheme } from "../hooks/use-theme";
 import cardImage from "../assets/1.jpg";
 
 const BrowseListing = () => {
+  const { theme } = useTheme();
   const [roommates, setRoommates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,7 +52,7 @@ const BrowseListing = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
         <span className="loading loading-spinner loading-lg text-[#3289c9]"></span>
       </div>
     );
@@ -58,7 +60,7 @@ const BrowseListing = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
+      <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-gray-900 text-red-400' : 'bg-gray-50 text-red-500'}`}>
         {error}
       </div>
     );
@@ -68,10 +70,10 @@ const BrowseListing = () => {
     <div className="container mx-auto px-4 py-8 max-w-11/12">
       {/* Header Section */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+        <h1 className={`text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
           Browse Roommate Listings
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className={`text-lg max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
           Discover the perfect roommate and living space that matches your
           lifestyle. Browse through verified listings from trusted members of
           our community.
@@ -85,12 +87,12 @@ const BrowseListing = () => {
           placeholder="Search by title, location, or user..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-80 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-[#3289c9]"
+          className={`w-full md:w-80 border rounded-md px-4 py-2 focus:outline-none focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
         />
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-[#3289c9]"
+          className={`border rounded-md px-4 py-2 focus:outline-none focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
         >
           <option value="asc">Sort: A-Z</option>
           <option value="desc">Sort: Z-A</option>
@@ -99,9 +101,9 @@ const BrowseListing = () => {
 
       {/* Listings Grid */}
       {filteredRoommates.length === 0 ? (
-        <div className="text-center text-gray-600 py-12">
+        <div className={`text-center py-12 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
           <p className="text-xl">No listings found</p>
-          <p className="text-gray-500 mt-2">
+          <p className={`mt-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
             Try adjusting your search criteria
           </p>
         </div>
@@ -110,7 +112,7 @@ const BrowseListing = () => {
           {filteredRoommates.map((listing) => (
             <div
               key={listing._id}
-              className="bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 flex flex-col group"
+              className={`border rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 flex flex-col group ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
               style={{ minHeight: 340 }}
             >
               <img
@@ -120,10 +122,10 @@ const BrowseListing = () => {
               />
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col justify-between">
-                <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-[#3289c9] transition-colors duration-200">
+                <h3 className={`text-xl font-bold mb-3 tracking-tight group-hover:text-[#3289c9] transition-colors duration-200 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
                   {listing.title}
                 </h3>
-                <div className="space-y-2 text-gray-600">
+                <div className={`space-y-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
                   <p className="flex items-center gap-2 text-base">
                     <FaMapMarkerAlt className="text-[#3289c9]" />
                     {listing.location}

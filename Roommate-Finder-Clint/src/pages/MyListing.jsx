@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import { Link } from "react-router";
 import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
+import { useTheme } from "../hooks/use-theme";
 import Swal from "sweetalert2";
 
 const MyListing = () => {
   const loadedListings = useLoaderData();
   const [myListings, setMyListings] = useState(loadedListings);
+  const { theme } = useTheme();
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -54,8 +56,18 @@ const MyListing = () => {
   if (myListings.length === 0) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold mb-4">No Listings Found</h2>
-        <p className="text-gray-600 mb-4">
+        <h2
+          className={`text-2xl font-bold mb-4 ${
+            theme === "dark" ? "text-white" : "text-gray-800"
+          }`}
+        >
+          No Listings Found
+        </h2>
+        <p
+          className={`mb-4 ${
+            theme === "dark" ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           You haven't added any listings yet.
         </p>
         <Link
@@ -71,8 +83,18 @@ const MyListing = () => {
   return (
     <div className="container mx-auto max-w-11/12 px-4 py-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">My Listings</h2>
-        <p className="text-gray-600 text-lg mb-6">
+        <h2
+          className={`text-3xl font-bold mb-4 ${
+            theme === "dark" ? "text-white" : "text-gray-800"
+          }`}
+        >
+          My Listings
+        </h2>
+        <p
+          className={`text-lg mb-6 ${
+            theme === "dark" ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           Manage your roommate listings. Edit, delete, or add new listings to
           find the perfect roommate.
         </p>
@@ -89,7 +111,11 @@ const MyListing = () => {
         {myListings.map((listing) => (
           <div
             key={listing._id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border border-gray-200"
+            className={`rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border ${
+              theme === "dark"
+                ? "bg-gray-800 border-gray-700"
+                : "bg-white border-gray-200"
+            }`}
           >
             {/* Card Header with Image */}
             <div className="relative h-48 bg-gradient-to-br from-[#3289c9] to-[#2778b5]">
@@ -133,12 +159,20 @@ const MyListing = () => {
             {/* Card Content */}
             <div className="p-6">
               {/* Title */}
-              <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 min-h-[3.5rem]">
+              <h3
+                className={`text-lg font-bold mb-2 line-clamp-2 min-h-[3.5rem] ${
+                  theme === "dark" ? "text-white" : "text-gray-800"
+                }`}
+              >
                 {listing.title}
               </h3>
 
               {/* Location */}
-              <div className="flex items-center gap-2 text-gray-600 mb-3">
+              <div
+                className={`flex items-center gap-2 mb-3 ${
+                  theme === "dark" ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 <svg
                   className="w-4 h-4"
                   fill="currentColor"
@@ -158,23 +192,43 @@ const MyListing = () => {
                 <span className="text-2xl font-bold text-[#3289c9]">
                   ${listing.rentAmount}
                 </span>
-                <span className="text-gray-500 text-sm">/month</span>
+                <span
+                  className={`text-sm ${
+                    theme === "dark" ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  /month
+                </span>
               </div>
 
               {/* Room Type */}
               {listing.roomType && (
                 <div className="mb-4">
-                  <span className="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                  <span
+                    className={`inline-block px-3 py-1 rounded-full text-sm ${
+                      theme === "dark"
+                        ? "bg-gray-700 text-gray-300"
+                        : "bg-gray-100 text-gray-700"
+                    }`}
+                  >
                     {listing.roomType}
                   </span>
                 </div>
               )}
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-2 pt-4 border-t border-gray-100">
+              <div
+                className={`flex flex-col gap-2 pt-4 border-t ${
+                  theme === "dark" ? "border-gray-700" : "border-gray-100"
+                }`}
+              >
                 <Link
                   to={`/roommates-details/${listing._id}`}
-                  className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium"
+                  className={`w-full py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm font-medium ${
+                    theme === "dark"
+                      ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
                 >
                   <FaEye className="w-4 h-4" />
                   View Details

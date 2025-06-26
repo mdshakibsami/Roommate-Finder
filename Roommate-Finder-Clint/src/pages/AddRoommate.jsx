@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/auth";
+import { useTheme } from "../hooks/use-theme";
 import Swal from "sweetalert2";
 
 const AddRoommate = () => {
   const { user } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const handleAddRoom = (e) => {
     e.preventDefault();
@@ -43,14 +45,14 @@ const AddRoommate = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+      <h2 className={`text-3xl font-bold text-center mb-8 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
         Add New Listing
       </h2>
 
       <form onSubmit={handleAddRoom} className="space-y-6">
         {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Title
           </label>
           <input
@@ -58,14 +60,14 @@ const AddRoommate = () => {
             name="title"
             required
             placeholder="e.g., Looking for a roommate in NYC"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
           />
         </div>
 
         {/* Location and Rent (2 columns) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
               Location
             </label>
             <input
@@ -73,11 +75,11 @@ const AddRoommate = () => {
               name="location"
               required
               placeholder="City, Area"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
               Rent Amount
             </label>
             <input
@@ -85,19 +87,19 @@ const AddRoommate = () => {
               name="rentAmount"
               required
               placeholder="Monthly rent in $"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+              className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
             />
           </div>
         </div>
 
         {/* Room Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Room Type
           </label>
           <select
             name="roomType"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
           >
             <option value="Single">Single Room</option>
             <option value="Shared">Shared Room</option>
@@ -108,11 +110,11 @@ const AddRoommate = () => {
 
         {/* Lifestyle Preferences */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className={`block text-sm font-medium mb-3 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Lifestyle Preferences
           </label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.pets"
@@ -120,7 +122,7 @@ const AddRoommate = () => {
               />
               <span>Pet Friendly</span>
             </label>
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.smoking"
@@ -128,7 +130,7 @@ const AddRoommate = () => {
               />
               <span>Smoking Allowed</span>
             </label>
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.nightOwl"
@@ -136,7 +138,7 @@ const AddRoommate = () => {
               />
               <span>Night Owl</span>
             </label>
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.earlyBird"
@@ -144,7 +146,7 @@ const AddRoommate = () => {
               />
               <span>Early Bird</span>
             </label>
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.drinking"
@@ -152,7 +154,7 @@ const AddRoommate = () => {
               />
               <span>Drinking Allowed</span>
             </label>
-            <label className="flex items-center space-x-2">
+            <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
               <input
                 type="checkbox"
                 name="lifestyle.visitors"
@@ -165,7 +167,7 @@ const AddRoommate = () => {
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Description
           </label>
           <textarea
@@ -173,29 +175,29 @@ const AddRoommate = () => {
             required
             rows="4"
             placeholder="Describe the room and your preferences..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
           ></textarea>
         </div>
 
         {/* Image URL */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Room Image URL
           </label>
           <input
             type="url"
             name="imageUrl"
             placeholder="https://example.com/room-image.jpg"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
           />
-          <p className="text-xs text-gray-500 mt-2">
+          <p className={`text-xs mt-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
             Enter a URL to an image of the room (optional)
           </p>
         </div>
 
         {/* Contact Info */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
             Phone
           </label>
           <input
@@ -203,13 +205,13 @@ const AddRoommate = () => {
             name="contactInfo"
             required
             placeholder="Phone number or preferred contact method"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9] transition-colors ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
           />
         </div>
 
         {/* Availability */}
         <div>
-          <label className="flex items-center space-x-2">
+          <label className={`flex items-center space-x-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-900'}`}>
             <input
               type="checkbox"
               name="availability"
@@ -223,7 +225,7 @@ const AddRoommate = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {" "}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
               Your Email
             </label>
             <input
@@ -231,11 +233,11 @@ const AddRoommate = () => {
               name="email"
               value={user.email}
               readOnly
-              className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg"
+              className={`w-full px-4 py-2 border rounded-lg ${theme === 'dark' ? 'bg-gray-600 border-gray-500 text-gray-300' : 'bg-gray-50 border-gray-300 text-gray-700'}`}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
               Your Name
             </label>
             <input
@@ -243,7 +245,7 @@ const AddRoommate = () => {
               name="userName"
               value={user.displayName}
               readOnly
-              className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg"
+              className={`w-full px-4 py-2 border rounded-lg ${theme === 'dark' ? 'bg-gray-600 border-gray-500 text-gray-300' : 'bg-gray-50 border-gray-300 text-gray-700'}`}
             />
           </div>
         </div>
