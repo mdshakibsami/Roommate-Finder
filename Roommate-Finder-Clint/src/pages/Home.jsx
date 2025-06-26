@@ -27,15 +27,13 @@ const ThemeToggle = () => {
 const Home = () => {
   const { theme } = useTheme();
   return (
-    <div data-theme={theme} className={`min-h-screen transition-colors duration-300 ${
-      theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
-    }`}>
+    <div data-theme={theme} className="min-h-screen transition-colors duration-300" style={{ backgroundColor: '#f9fafb' }}>
       <ThemeToggle />
-      <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
-        <Banner></Banner>
-        <FeaturesPost></FeaturesPost>
-        <HowWorks></HowWorks>
-        <SafetyTips></SafetyTips>
+      <div>
+        <Banner />
+        <FeaturesPost />
+        <HowWorks />
+        <SafetyTips />
       </div>
     </div>
   );

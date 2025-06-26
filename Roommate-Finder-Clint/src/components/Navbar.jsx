@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/auth";
 import { Tooltip } from "react-tooltip";
-import logo from "../assets/roommateLogo.png"
+import logo from "../assets/roommateLogo.png";
 
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
@@ -32,13 +32,20 @@ const Navbar = () => {
         <NavLink className="font-bold hover:text-[#3289c9]" to="/browse">
           Browse Listing
         </NavLink>
-      </li>{" "}
+      </li>
+      {user && (
+        <li>
+          <NavLink
+            className="font-bold hover:text-[#3289c9]"
+            to={`/my-listings/${user?.email}`}
+          >
+            My Listings
+          </NavLink>
+        </li>
+      )}
       <li>
-        <NavLink
-          className="font-bold hover:text-[#3289c9]"
-          to={`/my-listings/${user?.email}`}
-        >
-          My Listings
+        <NavLink className="font-bold hover:text-[#3289c9]" to="/about">
+          About Us
         </NavLink>
       </li>
     </>

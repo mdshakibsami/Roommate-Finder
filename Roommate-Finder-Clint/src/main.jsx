@@ -14,6 +14,7 @@ import AddRoommate from "./pages/AddRoommate";
 import ListingDetails from "./pages/ListingDetails";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import UpdatePage from "./pages/Updatepage";
+import About from "./components/About";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
           fetch(
             "https://roommate-finder-server-kappa.vercel.app/available-roommates"
           ),
+      },
+      {
+        path: "about",
+        Component: About,
       },
       {
         path: "add",

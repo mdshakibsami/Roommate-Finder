@@ -10,6 +10,7 @@ import sliderImg1 from "../assets/1.jpg";
 import sliderImg2 from "../assets/2.jpg";
 import sliderImg3 from "../assets/3.jpg";
 import sliderImg4 from "../assets/4.jpg";
+import { Link } from "react-router";
 
 const Banner = () => {
   const { theme } = useTheme();
@@ -80,12 +81,12 @@ const Banner = () => {
           </div>
 
           <div className="flex gap-4 justify-center lg:justify-start">
-            <button className="btn btn-primary bg-[#3289c9] text-white border-none hover:bg-[#2778b5]">
+            <Link to='/browse' className="btn btn-primary bg-[#3289c9] text-white border-none hover:bg-[#2778b5]">
               Find Roommate
-            </button>
-            <button className="btn btn-outline border-[#3289c9] text-[#3289c9] hover:bg-[#3289c9] hover:text-white hover:border-[#3289c9]">
+            </Link>
+            <Link to="/add" className="btn btn-outline border-[#3289c9] text-[#3289c9] hover:bg-[#3289c9] hover:text-white hover:border-[#3289c9]">
               List Your Space
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -111,7 +112,7 @@ const Banner = () => {
                   src={sliderImg1}
                   alt="Room interior"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-70 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <div
                     className={`text-white text-center p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300`}
                   >
@@ -130,7 +131,7 @@ const Banner = () => {
                   src={sliderImg2}
                   alt="Shared living space"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-70 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <div className="text-white text-center p-4">
                     <h3 className="text-2xl font-bold mb-2">
                       Comfortable Spaces
@@ -147,7 +148,7 @@ const Banner = () => {
                   src={sliderImg3}
                   alt="Cozy bedroom"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-70 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <div className="text-white text-center p-4">
                     <h3 className="text-2xl font-bold mb-2">Cozy Bedrooms</h3>
                     <p>Your private space in a shared environment</p>
@@ -162,7 +163,7 @@ const Banner = () => {
                   src={sliderImg4}
                   alt="Community area"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
+                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-70 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                   <div className="text-white text-center p-4">
                     <h3 className="text-2xl font-bold mb-2">
                       Community Living
