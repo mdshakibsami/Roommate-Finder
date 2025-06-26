@@ -47,7 +47,7 @@ async function run() {
       const result = await roommateCollection
         .find({ availability: { $in: [true, "on"] } })
         .sort({ likes: -1 })
-        .limit(6)
+        .limit(8)
         .toArray();
       res.send(result);
     });

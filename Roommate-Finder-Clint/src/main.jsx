@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: () =>
           fetch(
-            "https://roommate-finder-server-kappa.vercel.app/available-roommates"
+            "http://localhost:3000/available-roommates"
           ),
       },
       {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://roommate-finder-server-kappa.vercel.app/browse_listing/${params.email}`
+            `http://localhost:3000/browse_listing/${params.email}`
           ),
       },
       {
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://roommate-finder-server-kappa.vercel.app/details/${params.id}`
+            `http://localhost:3000/details/${params.id}`
           ),
       },
       {
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://roommate-finder-server-kappa.vercel.app/details/${params.id}`
+            `http://localhost:3000/details/${params.id}`
           ),
       },
       {

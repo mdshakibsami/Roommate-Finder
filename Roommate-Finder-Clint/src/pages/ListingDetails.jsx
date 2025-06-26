@@ -34,7 +34,7 @@ const ListingDetails = () => {
 
     try {
       const response = await fetch(
-        `https://roommate-finder-server-kappa.vercel.app/like/${roommate._id}`,
+        `http://localhost:3000/like/${roommate._id}`,
         {
           method: "PUT",
           headers: {

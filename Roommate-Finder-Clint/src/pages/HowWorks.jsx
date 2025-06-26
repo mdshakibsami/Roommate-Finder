@@ -72,30 +72,22 @@ const HowWorks = () => {
             </div>
 
             {/* Steps Section */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className={`grid md:grid-cols-3 gap-8 mb-16`}>
                 {steps.map((step, index) => (
                     <div key={index} className={`relative p-6 ${
-                        theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-                    } rounded-lg shadow-lg hover:shadow-xl transition-shadow`}>
-                        <div className={`absolute -top-5 left-6 ${
-                            theme === 'dark' ? 'bg-gray-700' : 'bg-white'
-                        } p-2 rounded-lg shadow-md`}>
+                        theme === 'dark' ? 'bg-gray-800 border border-gray-700 text-white' : 'bg-white border border-gray-200'
+                    } rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 flex flex-col items-center group`}>
+                        <div className={`absolute -top-8 left-1/2 -translate-x-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow-md border-2 border-[#3289c9] group-hover:scale-110 transition-transform duration-300`}>
                             {step.icon}
                         </div>
                         <div className="mt-8">
-                            <h3 className={`text-xl font-bold mb-3 ${
-                                theme === 'dark' ? 'text-white' : ''
-                            }`}>
+                            <h3 className={`text-xl font-bold mb-3 group-hover:text-[#3289c9] transition-colors duration-200`}>
                                 Step {index + 1}: {step.title}
                             </h3>
-                            <p className={`mb-4 ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                            }`}>{step.description}</p>
+                            <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>{step.description}</p>
                             <ul className="space-y-2">
                                 {step.features.map((feature, idx) => (
-                                    <li key={idx} className={`flex items-center text-sm ${
-                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                                    }`}>
+                                    <li key={idx} className={`flex items-center text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
                                         <span className="w-2 h-2 bg-[#3289c9] rounded-full mr-2"></span>
                                         {feature}
                                     </li>
@@ -107,26 +99,16 @@ const HowWorks = () => {
             </div>
 
             {/* Benefits Section */}
-            <div className={`${
-                theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'
-            } rounded-xl p-8`}>
-                <h2 className={`text-2xl font-bold text-center mb-8 ${
-                    theme === 'dark' ? 'text-white' : ''
-                }`}>Why Choose RoommateFinder?</h2>
+            <div className={`${theme === 'dark' ? 'bg-gray-800 border border-gray-700' : 'bg-gray-50 border border-gray-200'} rounded-2xl p-8 mt-8 shadow-xl`}>
+                <h2 className={`text-2xl font-bold text-center mb-8 ${theme === 'dark' ? 'text-white' : ''}`}>Why Choose RoommateFinder?</h2>
                 <div className="grid md:grid-cols-3 gap-6">
                     {benefits.map((benefit, index) => (
-                        <div key={index} className={`text-center p-6 ${
-                            theme === 'dark' ? 'bg-gray-700' : 'bg-white'
-                        } rounded-lg shadow-md`}>
+                        <div key={index} className={`text-center p-6 ${theme === 'dark' ? 'bg-gray-700 border border-gray-600' : 'bg-white border border-gray-100'} rounded-xl shadow-md hover:shadow-xl hover:scale-[1.04] transition-all duration-300 flex flex-col items-center group`}>
                             <div className="flex justify-center mb-4">
                                 {benefit.icon}
                             </div>
-                            <h3 className={`text-lg font-semibold mb-2 ${
-                                theme === 'dark' ? 'text-white' : ''
-                            }`}>{benefit.title}</h3>
-                            <p className={`${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                            }`}>{benefit.description}</p>
+                            <h3 className={`text-lg font-semibold mb-2 group-hover:text-[#3289c9] transition-colors duration-200 ${theme === 'dark' ? 'text-white' : ''}`}>{benefit.title}</h3>
+                            <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>{benefit.description}</p>
                         </div>
                     ))}
                 </div>

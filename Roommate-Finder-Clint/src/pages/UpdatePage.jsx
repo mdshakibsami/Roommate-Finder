@@ -21,7 +21,7 @@ const UpdatePage = () => {
     // Add user info
     updatedRoommate.userName = user?.displayName;
     updatedRoommate.userEmail = user?.email;
-    fetch(`https://roommate-finder-server-kappa.vercel.app/update-listing/${singleRoommate._id}`, {
+    fetch(`http://localhost:3000/update-listing/${singleRoommate._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

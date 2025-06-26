@@ -4,13 +4,14 @@ import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useTheme } from "../hooks/use-theme";
+import cardImage from "../assets/house.svg";
 
 const FeaturesPost = () => {
   const [features, setFeatures] = useState([]);
   const { theme } = useTheme();
 
   useEffect(() => {
-    fetch("https://roommate-finder-server-kappa.vercel.app/available-roommates")
+    fetch("http://localhost:3000/available-roommates")
       .then((res) => res.json())
       .then((data) => setFeatures(data));
   }, []);
@@ -26,59 +27,49 @@ const FeaturesPost = () => {
           Featured Available Roommates
         </h2>
         <p
-          className={`${
-            theme === "dark" ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
         >
           Find your perfect roommate match from our featured listings
         </p>
       </div>{" "}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((post) => (
           <div
             key={post._id}
-            className={`${
-              theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
-            } rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300`}
+            className={`$${
+              theme === "dark"
+                ? "bg-gray-800 text-white border border-gray-700"
+                : "bg-white border border-gray-200"
+            } rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 flex flex-col group`}
+            style={{ minHeight: 340 }}
           >
+            <img
+              src={cardImage}
+              alt={post.title}
+              className="w-full h-40 object-cover rounded-t-2xl border-b border-gray-100 group-hover:brightness-95 transition-all duration-300"
+            />
             {/* Content */}
-            <div className="p-5 space-y-4">
-              <h3 className="text-xl font-semibold">{post.title}</h3>
-
+            <div className="p-6 flex-1 flex flex-col justify-between">
+              <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-[#3289c9] transition-colors duration-200">
+                {post.title}
+              </h3>
               <div
                 className={`space-y-2 ${
                   theme === "dark" ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-base">
                   <FaMapMarkerAlt className="text-[#3289c9]" />
                   {post.location}
                 </p>
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-base">
                   <MdOutlineAttachMoney className="text-[#3289c9]" />$
                   {post.rentAmount}/month
                 </p>
-                <p className="flex items-center gap-2">
-                  <FaRegClock className="text-[#3289c9]" />
-                  {post.roomType}
-                </p>
-                <p className="flex items-center gap-2">
-                  <FaUserFriends className="text-[#3289c9]" />
-                  Contact: {post.contactInfo}
-                </p>
               </div>
-
-              <p
-                className={`${
-                  theme === "dark" ? "text-gray-300" : "text-gray-600"
-                } line-clamp-2`}
-              >
-                {post.description}
-              </p>
-
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mt-8">
                 <span
-                  className={`px-3 py-1 rounded-full text-sm ${
+                  className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${
                     post.availability
                       ? "bg-green-100 text-green-800"
                       : "bg-red-100 text-red-800"
@@ -88,9 +79,9 @@ const FeaturesPost = () => {
                 </span>
                 <Link
                   to={`/roommates-details/${post._id}`}
-                  className="text-[#3289c9] hover:text-[#2778b5] font-semibold"
+                  className="text-[#3289c9] hover:text-[#2778b5] font-semibold text-sm border border-[#3289c9] px-3 py-1 rounded-full transition-colors duration-200"
                 >
-                  See Details →
+                  See Details
                 </Link>
               </div>
             </div>

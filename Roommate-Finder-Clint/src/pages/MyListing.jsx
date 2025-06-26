@@ -18,7 +18,7 @@ const MyListing = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://roommate-finder-server-kappa.vercel.app/delete-listing/${id}`, {
+        fetch(`http://localhost:3000/delete-listing/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -18,7 +18,7 @@ const BrowseListing = () => {
 
   useEffect(() => {
     fetch(
-      "https://roommate-finder-server-kappa.vercel.app/browse_listing"
+      "http://localhost:3000/browse_listing"
     )
       .then((res) => res.json())
       .then((data) => {

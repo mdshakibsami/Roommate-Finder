@@ -49,8 +49,8 @@ const SafetyTips = () => {
           {/* Lifestyle */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            } p-6 rounded-lg shadow-md`}
+              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
               className={`text-xl font-semibold mb-4 ${
@@ -74,8 +74,8 @@ const SafetyTips = () => {
           {/* Financial */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            } p-6 rounded-lg shadow-md`}
+              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
               className={`text-xl font-semibold mb-4 ${
@@ -99,8 +99,8 @@ const SafetyTips = () => {
           {/* Personal */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            } p-6 rounded-lg shadow-md`}
+              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <h3
               className={`text-xl font-semibold mb-4 ${
@@ -140,8 +140,8 @@ const SafetyTips = () => {
           {/* Do's */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            } p-6 rounded-lg shadow-md`}
+              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <div className="flex items-center gap-2 mb-4">
               <FaCheckCircle className="text-green-500 text-xl" />
@@ -183,8 +183,8 @@ const SafetyTips = () => {
           {/* Don'ts */}
           <div
             className={`${
-              theme === "dark" ? "bg-gray-800" : "bg-white"
-            } p-6 rounded-lg shadow-md`}
+              theme === "dark" ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-200"
+            } p-6 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-300`}
           >
             <div className="flex items-center gap-2 mb-4">
               <FaTimesCircle className="text-red-500 text-xl" />
