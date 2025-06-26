@@ -23,16 +23,21 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink className="font-bold hover:text-[#3289c9]" to="/add">
-          Add Listing
-        </NavLink>
-      </li>
+
       <li>
         <NavLink className="font-bold hover:text-[#3289c9]" to="/browse">
           Browse Listing
         </NavLink>
       </li>
+
+      {user && (
+        <li>
+          <NavLink className="font-bold hover:text-[#3289c9]" to="/add">
+            Add Listing
+          </NavLink>
+        </li>
+      )}
+
       {user && (
         <li>
           <NavLink
@@ -52,7 +57,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-white shadow-sm sticky top-0 z-50">
+    <div className="navbar bg-white shadow-sm sticky top-0 z-50 px-8">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -3,6 +3,7 @@ import FeaturesPost from "./FeaturesPost";
 import SafetyTips from "./SafetyTips";
 import HowWorks from "./HowWorks";
 import { useTheme } from "../hooks/use-theme";
+import Newsletter from "../components/Newsletter";
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
@@ -34,6 +35,7 @@ const Home = () => {
         <FeaturesPost />
         <HowWorks />
         <SafetyTips />
+        <Newsletter></Newsletter>
       </div>
     </div>
   );

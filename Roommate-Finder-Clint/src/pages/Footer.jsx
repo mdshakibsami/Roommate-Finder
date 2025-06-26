@@ -46,7 +46,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="justify-center flex">
             <div>
-              <h3 className="footer-title mb-2 text-[#3289c9]">Quick Links</h3>
+              <h3 className="text-lg font-bold mb-2 text-[#3289c9]">Quick Links</h3>
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li>
                   <Link
@@ -86,7 +86,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex  justify-end">
             <div>
-              <h3 className="footer-title mb-2 text-[#3289c9]">
+              <h3 className="text-lg font-bold mb-2 text-[#3289c9]">
                 Connect With Us
               </h3>
               <div className="flex gap-4 mb-4">
