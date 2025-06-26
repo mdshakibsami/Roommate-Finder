@@ -245,6 +245,23 @@ const UpdatePage = () => {
           ></textarea>
         </div>
 
+        {/* Image URL */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Image URL
+          </label>
+          <input
+            type="url"
+            name="imageURL"
+            defaultValue={singleRoommate.imageURL}
+            placeholder="Enter image URL for your listing"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#3289c9] focus:border-[#3289c9]"
+          />
+          <p className="text-sm text-gray-500 mt-1">
+            Provide a URL to an image that represents your listing
+          </p>
+        </div>
+
         {/* Contact Info */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
