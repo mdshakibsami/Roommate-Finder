@@ -20,7 +20,7 @@ const MyListing = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/delete-listing/${id}`, {
+        fetch(`https://roommate-finder-server-kappa.vercel.app/delete-listing/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -119,9 +119,9 @@ const MyListing = () => {
           >
             {/* Card Header with Image */}
             <div className="relative h-48 bg-gradient-to-br from-[#3289c9] to-[#2778b5]">
-              {listing.imageURL ? (
+              {listing.imageUrl ? (
                 <img
-                  src={listing.imageURL}
+                  src={listing.imageUrl}
                   alt={listing.title}
                   className="w-full h-full object-cover"
                 />

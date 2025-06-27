@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FaGoogle, FaEnvelope, FaLock } from "react-icons/fa";
 import { AuthContext } from "../contexts/auth";
+import { useTheme } from "../hooks/use-theme";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
   const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -68,18 +70,18 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">Welcome Back!</h2>
-          <p className="mt-2 text-gray-600">Please sign in to your account</p>
+          <h2 className={`text-3xl font-bold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>Welcome Back!</h2>
+          <p className={`mt-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>Please sign in to your account</p>
         </div>
 
         {/* Error Message */}
         {error && (
           <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            className={`border px-4 py-3 rounded relative ${theme === 'dark' ? 'bg-red-900 border-red-700 text-red-300' : 'bg-red-100 border-red-400 text-red-700'}`}
             role="alert"
           >
             <span className="block sm:inline">{error}</span>
@@ -95,7 +97,7 @@ const Login = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaEnvelope className="h-5 w-5 text-gray-400" />
+                  <FaEnvelope className={`h-5 w-5 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`} />
                 </div>
                 <input
                   id="email"
@@ -105,7 +107,11 @@ const Login = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none relative block w-full px-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-[#3289c9] focus:border-[#3289c9] focus:z-10 sm:text-sm"
+                  className={`appearance-none relative block w-full px-12 py-3 border rounded-lg focus:outline-none focus:ring-[#3289c9] focus:border-[#3289c9] focus:z-10 sm:text-sm ${
+                    theme === 'dark' 
+                      ? 'border-gray-600 placeholder-gray-400 text-gray-100 bg-gray-800' 
+                      : 'border-gray-300 placeholder-gray-500 text-gray-900 bg-white'
+                  }`}
                   placeholder="Email address"
                 />
               </div>
@@ -116,7 +122,7 @@ const Login = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="h-5 w-5 text-gray-400" />
+                  <FaLock className={`h-5 w-5 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`} />
                 </div>
                 <input
                   id="password"
@@ -126,7 +132,11 @@ const Login = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none relative block w-full px-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-[#3289c9] focus:border-[#3289c9] focus:z-10 sm:text-sm"
+                  className={`appearance-none relative block w-full px-12 py-3 border rounded-lg focus:outline-none focus:ring-[#3289c9] focus:border-[#3289c9] focus:z-10 sm:text-sm ${
+                    theme === 'dark' 
+                      ? 'border-gray-600 placeholder-gray-400 text-gray-100 bg-gray-800' 
+                      : 'border-gray-300 placeholder-gray-500 text-gray-900 bg-white'
+                  }`}
                   placeholder="Password"
                 />
               </div>
@@ -144,7 +154,11 @@ const Login = () => {
             <button
               type="button"
               onClick={handleGoogleLogin}
-              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3289c9]"
+              className={`w-full flex justify-center items-center gap-2 py-3 px-4 border rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3289c9] ${
+                theme === 'dark'
+                  ? 'border-gray-600 text-gray-300 bg-gray-800 hover:bg-gray-700'
+                  : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+              }`}
             >
               <FaGoogle className="h-5 w-5 text-red-500" />
               Continue with Google
@@ -153,7 +167,7 @@ const Login = () => {
         </form>
 
         {/* Register Link */}
-        <p className="text-center text-sm text-gray-600">
+        <p className={`text-center text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           Don't have an account?{" "}
           <Link
             to="/register"

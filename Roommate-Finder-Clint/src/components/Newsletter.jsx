@@ -9,7 +9,7 @@ const Newsletter = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     try {
-      const response = await fetch("http://localhost:3000/newsletter", {
+      const response = await fetch("https://roommate-finder-server-kappa.vercel.app/newsletter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

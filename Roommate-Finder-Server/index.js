@@ -26,27 +26,26 @@ async function run() {
     // await client.connect();
 
     const roommateCollection = client.db(process.env.DB_name).collection("add");
-    const newsletterCollection = client.db(process.env.DB_name).collection("newsletter");
+    const newsletterCollection = client
+      .db(process.env.DB_name)
+      .collection("newsletter");
 
     // ========================== have to comment out ==================
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    // await client.db("admin").command({ ping: 1 });
+    // console.log(
+    //   "Pinged your deployment. You successfully connected to MongoDB!"
+    // );
 
     //===================================
 
-
     // newsletter section
-     // add a post
+    // add a post
     app.post("/newsletter", async (req, res) => {
       const newsletterData = req.body;
-      console.log("newsletter",newsletterData)
+      console.log("newsletter", newsletterData);
       const result = await newsletterCollection.insertOne(newsletterData);
       res.send(result);
-    }); 
-
-
+    });
 
     // all listing
     app.get("/", (req, res) => {
@@ -91,8 +90,8 @@ async function run() {
         likes: 0,
       });
       res.send(result);
-    }); 
-    
+    });
+
     // you can like post
     app.put("/like/:id", async (req, res) => {
       const id = req.params.id;

@@ -1,10 +1,8 @@
 import { Link } from "react-router";
 import { FaMapMarkerAlt, FaRegClock, FaUserFriends } from "react-icons/fa";
-import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useTheme } from "../hooks/use-theme";
-import cardImage from "../assets/house.svg";
 
 const FeaturesPost = () => {
   const [features, setFeatures] = useState([]);
@@ -12,10 +10,10 @@ const FeaturesPost = () => {
   const { theme } = useTheme();
 
   useEffect(() => {
-    fetch("http://localhost:3000/available-roommates")
+    fetch("https://roommate-finder-server-kappa.vercel.app/available-roommates")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data)
         return setFeatures(data);
       });
   }, []);
@@ -40,7 +38,7 @@ const FeaturesPost = () => {
         {features.map((post) => (
           <div
             key={post._id}
-            className={`$${
+            className={`${
               theme === "dark"
                 ? "bg-gray-800 text-white border border-gray-700"
                 : "bg-white border border-gray-200"
@@ -48,7 +46,7 @@ const FeaturesPost = () => {
             style={{ minHeight: 340 }}
           >
             <img
-              src={cardImage}
+              src={post.imageUrl}
               alt={post.title}
               className="w-full h-40 object-cover rounded-t-2xl border-b border-gray-100 group-hover:brightness-95 transition-all duration-300"
             />

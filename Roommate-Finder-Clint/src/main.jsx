@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/available-roommates"),
+        loader: () => fetch("https://roommate-finder-server-kappa.vercel.app/available-roommates"),
       },
       {
         path: "about",
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/browse_listing/${params.email}`),
+          fetch(`https://roommate-finder-server-kappa.vercel.app/browse_listing/${params.email}`),
       },
       {
         path: "roommates-details/:id",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/details/${params.id}`),
+          fetch(`https://roommate-finder-server-kappa.vercel.app/details/${params.id}`),
       },
       {
         path: "/update-listing/:id",
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateProvider>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/details/${params.id}`),
+          fetch(`https://roommate-finder-server-kappa.vercel.app/details/${params.id}`),
       },
       {
         path: "login",
@@ -84,41 +84,38 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateProvider>
-        <Dashboard />
-      </PrivateProvider>
-    ),
-    children: [
       {
-        index: true,
-        element: <div>Dashboard Home Content</div>,
-      },
-      {
-        path: "add",
+        path: "dashboard",
         element: (
           <PrivateProvider>
-            <AddRoommate></AddRoommate>
+            <Dashboard />
           </PrivateProvider>
         ),
-      },
-      {
-        path: "my-items/:email",
-        element: (
-          <PrivateProvider>
-            <DashboardMyListing></DashboardMyListing>
-          </PrivateProvider>
-        ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/browse_listing/${params.email}`),
-      },
-      {
-        path: "browse",
-        element: <DashboardBrowseListing></DashboardBrowseListing>,
+        children: [
+          {
+            path: "add",
+            element: (
+              <PrivateProvider>
+                <AddRoommate></AddRoommate>
+              </PrivateProvider>
+            ),
+          },
+          {
+            path: "my-items/:email",
+            element: (
+              <PrivateProvider>
+                <DashboardMyListing></DashboardMyListing>
+              </PrivateProvider>
+            ),
+            loader: ({ params }) =>
+              fetch(`https://roommate-finder-server-kappa.vercel.app/browse_listing/${params.email}`),
+          },
+          {
+            path: "browse",
+            element: <DashboardBrowseListing></DashboardBrowseListing>,
+            loader: () => fetch("https://roommate-finder-server-kappa.vercel.app/browse_listing"),
+          },
+        ],
       },
     ],
   },
